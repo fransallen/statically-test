@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charSet="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Statically Test</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            margin-top: 2em;
+        }
+        code {
+            background: #e6e6e6;
+            padding: 0 6px;
+        }
+        p {
+            line-height: 1.5;
+        }
+        .header {
+            margin-top: 5em;
+        }
+        .header h1 {
+            font-weight: bold;
+        }
+        .container {
+            padding: 1em 2em;
+            max-width: 920px;
+            margin: auto;
+        }
+        footer.container {
+            color: #444;
+            margin-top: 2em;
+            margin-bottom: 6em;
+        }
+        footer a {
+            color: #444;
+            text-decoration: none;
+        }
+        .mt-2 {
+            margin-top: 2rem;
+        }
+        .cdn-img {
+            max-height: 50px;
+        }
+        .desc {
+            color: #333;
+            font-size: 16px;
+            margin: auto;
+            margin-top: 10px;
+            max-width: 60%;
+        }
+    </style>
+    <script>
+        var req = new XMLHttpRequest();
+        req.open('GET', 'https://cdn.statically.io/favicon.ico', false);
+        req.send(null);
+        var SERVER = req.getResponseHeader('Server');
+
+        if ( SERVER == 'statically' ) {
+            var SERVER = 'Fastly';
+            var DESC = 'Fastly is edge cloud platform that delivers faster, safer, and more scalable sites and apps to end users around the world.';
+        }
+
+        if ( SERVER == 'cloudflare' ) {
+            var SERVER = 'Cloudflare';
+            var DESC = 'Cloudflare is the Internet Security, Performance, and Reliability company.';
+        }
+
+        if ( SERVER.includes('BunnyCDN') ) {
+            var SERVER = 'BunnyCDN';
+            var DESC = 'BunnyCDN is a simple and powerful CDN, offering lightning fast performance for a fraction of the cost with free SSL, Brotli, HTTP/2 and 100% Pay As You Go pricing.';
+        }
+
+        if ( SERVER.includes('CDN77') ) {
+            var SERVER = 'CDN77';
+            var DESC = '30 Tbps+ CDN with global coverage across 6 continents. Accelerate your content delivery and reach your users from the edge with a 14-day free trial.';
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            <a href="https://statically.io/">
+                <img src="https://cdn.statically.io/img/statically.io/w=250/images/branding/statically-logo-dark.png"/>
+            </a>
+        </h1>
+        <p><strong>What CDN used by Statically for this city?</strong></p>
+    </header>
+
+    <main class="container">
+        <p>In this city, Statically's CDN is powered by <script>document.write(SERVER);</script>.</p>
+        <script>document.write('<img class="cdn-img" src="https://statically.io/images/sponsors/' + SERVER.toLowerCase() + '.svg">');</script>
+        <p class="desc"><script>document.write(DESC);</script></p>
+    </main>
+
+    <footer class="container">
+        <p>&copy; 2020 <a href="https://statically.io/">Statically</a></p>
+    </footer>
+</body>
+</html>
